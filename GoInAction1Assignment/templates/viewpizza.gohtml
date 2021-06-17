@@ -1,0 +1,37 @@
+{{template "header"}}
+
+{{if .User.First}}
+<i>Welcome {{.User.First}} {{.User.Last}} ({{.User.Username}}),</i>
+<br>
+<h2>View All Pizza</h2>
+
+{{if ne .User.Username "admin"}}
+    <p style="color:red;">You do not have access to this page. </p> 
+{{else}}
+
+{{if eq .CntPizza 0}}
+    <p style="color:red;">There are no pizzas on the menu today. </p>   
+{{else}}        
+    <table id="view">
+    <tr>
+        <th>Pizza Name</th>
+        <th>Pizza Price</th>
+    </tr>
+    {{range .ViewPizzaSlice}}  
+        <tr>
+            <td>{{.PizzaName}}</td>           
+            <td>${{.SPizzaPrice}}</td>           
+        </tr>
+    {{end}}              
+    </table>   
+    <br>
+{{end}}
+
+{{end}}
+
+{{template "footer"}}
+
+{{end}}
+
+</body>
+</html>

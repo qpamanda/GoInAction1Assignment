@@ -1,0 +1,41 @@
+{{template "header"}}
+
+{{if .User.First}}
+<i>Welcome {{.User.First}} {{.User.Last}} ({{.User.Username}}) - [<a href="/edituser">Edit Profile</a>]</i>,
+<br><br>
+
+<table id="view">
+    <tr><th>Main Menu</th></tr>
+    <tr><td><a href="/addorder">Add Order</a></td></tr>
+    <tr><td><a href="/editorder">Edit Order</a></td></tr>
+    <tr><td><a href="/vieworders">View Orders</a></td></tr>     
+</table>
+
+{{if eq .User.Username "admin"}}
+</br>
+<table id="view">
+    <tr><th>Admin Menu</th></tr>
+    <tr><td><a href="/completeorder">Complete Orders (Dequeue)</a></td></tr>
+    <tr><td><a href="/pizzasales">View Pizza Sales of the Day</a></td></tr>
+    <tr><td><a href="/addpizza">Add New Pizza</a></td></tr>
+    <tr><td><a href="/editpizza">Edit Pizza</a></td></tr>
+    <tr><td><a href="/deletepizza">Delete Pizza</a></td></tr>
+    <tr><td><a href="/viewpizza">View All Pizza</a></td></tr>  
+    <tr><td><a href="/deleteuser">Delete User</a></td></tr> 
+</table>
+{{end}}
+
+</br>
+
+[<a href="/logout">Log Out</a>]
+
+{{else}}
+
+<p style="color:red;">{{.ClientMsg}} </p> 
+
+{{template "login"}}
+
+{{end}}
+
+</body>
+</html>
